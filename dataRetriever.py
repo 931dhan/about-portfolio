@@ -14,6 +14,7 @@ class CallAPI:
         self.interval = interval
 
     def day_constructor(self):
+        # To call API for stock data for a specified date.
         day1 = int(time.mktime(datetime.datetime(self.period1, self.period2, self.period3, 0, 0).timetuple()))
         day2 = int(time.mktime(datetime.datetime(self.period1, self.period2, self.period3, 23, 59).timetuple()))
         interval = "1d"
@@ -22,6 +23,7 @@ class CallAPI:
         return stockData.to_dict(orient='list')
 
     def realtime_constructor(self):
+        # To call API for stock data for today.
         day1 = int(time.mktime(datetime.datetime(self.period1, self.period2, self.period3, 0, 0).timetuple()))
         day2 = int(time.mktime(datetime.datetime(self.period1, self.period2, self.period3, 23, 59).timetuple()))
         interval = "1d"
@@ -49,6 +51,8 @@ class CallAPI:
 #         stockData.plot(kind='scatter', x='Date', y='Open')
 #         return plt.show()
 
+
+# Returns specific value of a stock, given a dictionary.
 def get_stock(key, api_connector):
     modified_key = f"{key[0].upper()}{key[1:].lower()}"
     list_index = 0
@@ -57,6 +61,7 @@ def get_stock(key, api_connector):
     return modified_value
 
 
+# Returns adjusted close of a stock, given a dictionary.
 def get_adj_close(key, api_connector):
     modified_key = f"{key[0].upper()}{key[1:3].lower()} {key[4].upper()}{key[5:].lower()}"
     list_index = 0
